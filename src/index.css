@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    @apply bg-bg-primary text-fg-primary;
+    font-feature-settings: "calt" 1, "liga" 1;
+  }
+  * {
+    @apply border-border;
+  }
+}
+
+@layer utilities {
+  .label-mono {
+    @apply text-2xs uppercase tracking-widest text-fg-muted font-medium;
+  }
+  .label-bar {
+    @apply border-l-2 border-accent pl-2 mb-1.5;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffd400;
+}
+
+/* Tooltip animation overrides for Radix */
+[data-state='delayed-open'][data-side='top'] {
+  animation: slide-down 0.15s ease-out;
+}
