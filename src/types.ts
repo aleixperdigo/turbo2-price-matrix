@@ -19,7 +19,8 @@ export type ModelFamily =
   | 'HAILUO'
   | 'WAN'
   | 'PIXVERSE'
-  | 'GROK';
+  | 'GROK'
+  | 'OMNI';
 
 export type PricingType =
   | 'cr_per_sec'

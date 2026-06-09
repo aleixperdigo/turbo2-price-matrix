@@ -1448,9 +1448,73 @@ export const MODELS: Record<string, Model> = {
       }
     }
   },
+  "veo-3-1-lite": {
+    "label": "VEO 3.1 LITE",
+    "alias": "Google Veo 3.1 Lite",
+    "family": "VEO",
+    "audioApplies": true,
+    "maxDur": 8,
+    "cappedAt": 8,
+    "isNew": true,
+    "note": "Variante económica · solo en fal.ai (jun 2026)",
+    "pricing": {
+      "freepik": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      },
+      "fal": {
+        "720p": {
+          "t2v": {
+            "type": "usd_per_sec",
+            "value": 0.03,
+            "audioOn": 0.05,
+            "status": "verified",
+            "source": "fal.ai/models/fal-ai/veo3.1/lite · 720p"
+          },
+          "i2v": {
+            "type": "usd_per_sec",
+            "value": 0.03,
+            "audioOn": 0.05,
+            "status": "verified",
+            "source": "fal.ai/models/fal-ai/veo3.1/lite/image-to-video · 720p"
+          },
+          "v2v": null
+        },
+        "1080p": {
+          "t2v": {
+            "type": "usd_per_sec",
+            "value": 0.05,
+            "audioOn": 0.08,
+            "status": "verified",
+            "source": "fal.ai/models/fal-ai/veo3.1/lite · 1080p"
+          },
+          "i2v": {
+            "type": "usd_per_sec",
+            "value": 0.05,
+            "audioOn": 0.08,
+            "status": "verified",
+            "source": "fal.ai/models/fal-ai/veo3.1/lite/image-to-video · 1080p"
+          },
+          "v2v": null
+        }
+      },
+      "comfy": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      },
+      "higgsfield": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      },
+      "weavy": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      }
+    }
+  },
   "veo-3-1": {
-    "label": "VEO 3.1",
-    "alias": "Google Veo 3.1",
+    "label": "VEO 3.1 QUALITY",
+    "alias": "Google Veo 3.1 Quality",
     "family": "VEO",
     "audioApplies": true,
     "maxDur": 8,
@@ -2525,22 +2589,29 @@ export const MODELS: Record<string, Model> = {
       }
     }
   },
-  "grok-imagine-i2v": {
-    "label": "GROK IMAGINE",
-    "alias": "Grok Imagine Video",
+  "grok-imagine-video": {
+    "label": "GROK VIDEO",
+    "alias": "Grok Imagine Video 1.5 (xAI)",
     "family": "GROK",
-    "audioApplies": false,
-    "maxDur": 8,
-    "note": "Solo I2V · 480p / 720p",
+    "audioApplies": true,
+    "audioIncluded": true,
+    "maxDur": 15,
+    "isNew": true,
+    "note": "Modelo de vídeo (T2V + I2V) · 480p / 720p · máx 15s · sin 1080p",
     "pricing": {
       "freepik": {
         "720p": {
-          "t2v": null,
+          "t2v": {
+            "type": "cr_per_sec",
+            "value": 80,
+            "status": "verified",
+            "source": "magnific.com/ai/docs/ai-video-generator-credits · Grok 480-720p = 80 cr/s"
+          },
           "i2v": {
             "type": "cr_per_sec",
             "value": 80,
             "status": "verified",
-            "source": "support.freepik.com"
+            "source": "magnific.com/ai/docs/ai-video-generator-credits"
           },
           "v2v": null
         },
@@ -2552,8 +2623,18 @@ export const MODELS: Record<string, Model> = {
       },
       "fal": {
         "720p": {
-          "t2v": null,
-          "i2v": null,
+          "t2v": {
+            "type": "usd_per_sec",
+            "value": 0.14,
+            "status": "verified",
+            "source": "fal.ai/models/xai/grok-imagine-video/v1.5 · 720p"
+          },
+          "i2v": {
+            "type": "usd_per_sec",
+            "value": 0.14,
+            "status": "verified",
+            "source": "fal.ai/models/xai/grok-imagine-video/v1.5/image-to-video · 720p"
+          },
           "v2v": null
         },
         "1080p": {
@@ -2564,7 +2645,13 @@ export const MODELS: Record<string, Model> = {
       },
       "comfy": {
         "720p": {
-          "t2v": null,
+          "t2v": {
+            "type": "cr_per_sec",
+            "value": 38.19,
+            "status": "approx",
+            "note": "rate t2v asumido igual que i2v (Comfy no publica precio de vídeo Grok por separado)",
+            "source": "docs.comfy.org · grok-imagine 720p (i2v)"
+          },
           "i2v": {
             "type": "cr_per_sec",
             "value": 38.19,
@@ -2593,7 +2680,13 @@ export const MODELS: Record<string, Model> = {
       },
       "weavy": {
         "720p": {
-          "t2v": null,
+          "t2v": {
+            "type": "cr_per_clip_5s",
+            "value": 36,
+            "status": "approx",
+            "note": "Weavy lista Grok como T2V (prompt-only) · valor derivado de la tabla oficial",
+            "source": "weave.figma.com · derivado tabla oficial · \"Grok Imagine\""
+          },
           "i2v": {
             "type": "cr_per_clip_5s",
             "value": 36,
@@ -2607,6 +2700,38 @@ export const MODELS: Record<string, Model> = {
           "i2v": null,
           "v2v": null
         }
+      }
+    }
+  },
+  "omni-flash": {
+    "label": "OMNI FLASH",
+    "alias": "Google Gemini Omni Flash",
+    "family": "OMNI",
+    "audioApplies": true,
+    "audioIncluded": true,
+    "maxDur": 10,
+    "isNew": true,
+    "note": "Google · lanzado 19 may 2026 · T2V + I2V · audio nativo · máx 10s. API externa aún no pública (jun 2026) → precios de plataforma PENDIENTES.",
+    "pricing": {
+      "freepik": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      },
+      "fal": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      },
+      "comfy": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      },
+      "higgsfield": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
+      },
+      "weavy": {
+        "720p": { "t2v": null, "i2v": null, "v2v": null },
+        "1080p": { "t2v": null, "i2v": null, "v2v": null }
       }
     }
   }

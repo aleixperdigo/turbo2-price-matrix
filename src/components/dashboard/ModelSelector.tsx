@@ -14,6 +14,7 @@ const FAMILY_LABELS: Record<ModelFamily, string> = {
   WAN: 'WAN',
   PIXVERSE: 'PIXVERSE',
   GROK: 'GROK',
+  OMNI: 'OMNI · NEW',
 };
 
 interface ModelSelectorProps {
