@@ -1,5 +1,6 @@
 import { Label } from './Label';
 import { Card } from '@/components/ui/card';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { MODELS } from '@/data/models';
 import type { Model, ModelFamily } from '@/types';
 import { cn } from '@/lib/utils';
@@ -49,11 +50,12 @@ export function ModelSelector({ activeModelIds, toggleModel }: ModelSelectorProp
             <div className="flex flex-wrap gap-1">
               {models.map((m) => {
                 const active = activeModelIds.includes(m.key);
-                return (
+                const btn = (
                   <button
                     key={m.key}
                     onClick={() => toggleModel(m.key)}
                     aria-pressed={active}
+                    aria-label={m.note ? `${m.alias} — ${m.note}` : m.alias}
                     className={cn(
                       'inline-flex items-center gap-1 h-7 px-2 text-2xs uppercase tracking-widest font-medium border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
                       active
@@ -70,6 +72,15 @@ export function ModelSelector({ activeModelIds, toggleModel }: ModelSelectorProp
                       </span>
                     )}
                   </button>
+                );
+                return (
+                  <Tooltip key={m.key}>
+                    <TooltipTrigger asChild>{btn}</TooltipTrigger>
+                    <TooltipContent className="max-w-[260px]">
+                      <div className="font-bold">{m.alias}</div>
+                      {m.note && <div className="mt-0.5 normal-case opacity-80">{m.note}</div>}
+                    </TooltipContent>
+                  </Tooltip>
                 );
               })}
             </div>

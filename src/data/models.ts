@@ -1519,6 +1519,7 @@ export const MODELS: Record<string, Model> = {
     "audioApplies": true,
     "maxDur": 8,
     "cappedAt": 8,
+    "note": "Precio plano 720p–1080p (factura por segundo, no por resolución) · el 4K cuesta más pero no se incluye aquí",
     "pricing": {
       "freepik": {
         "720p": {
@@ -1698,6 +1699,7 @@ export const MODELS: Record<string, Model> = {
     "audioApplies": true,
     "maxDur": 8,
     "cappedAt": 8,
+    "note": "Precio plano 720p–1080p (factura por segundo, no por resolución) · el 4K cuesta más pero no se incluye aquí",
     "pricing": {
       "freepik": {
         "720p": {
