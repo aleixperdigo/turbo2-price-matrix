@@ -7,27 +7,27 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Brutalist Turbo2 palette
+        // Brutalist Turbo2 palette — driven by CSS vars (see index.css) for theming
         bg: {
-          primary: '#050505',
-          secondary: '#0d0d0d',
-          elevated: '#141414',
-          panel: '#0a0a0a',
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          elevated: 'var(--bg-elevated)',
+          panel: 'var(--bg-panel)',
         },
         border: {
-          DEFAULT: '#1f1f1f',
-          subtle: '#141414',
-          strong: '#2a2a2a',
+          DEFAULT: 'var(--border)',
+          subtle: 'var(--border-subtle)',
+          strong: 'var(--border-strong)',
         },
         fg: {
-          primary: '#e8e8e8',
-          muted: '#888888',
-          dim: '#444444',
-          dark: '#666666',
+          primary: 'var(--fg-primary)',
+          muted: 'var(--fg-muted)',
+          dim: 'var(--fg-dim)',
+          dark: 'var(--fg-dark)',
         },
         accent: {
-          DEFAULT: '#ffd400',
-          muted: '#ffd40033',
+          DEFAULT: 'var(--accent)',
+          muted: 'var(--accent-muted)',
         },
         status: {
           verified: '#00d97a',
@@ -46,7 +46,8 @@ export default {
       fontFamily: {
         display: ['"Archivo Black"', 'sans-serif'],
         mega: ['"Bowlby One SC"', '"Archivo Black"', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'monospace'],
+        // Body font is themeable: JetBrains Mono (dark) ↔ Inter (light)
+        mono: ['var(--font-base)', 'monospace'],
       },
       fontSize: {
         '2xs': '9px',

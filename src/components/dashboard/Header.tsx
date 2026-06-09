@@ -1,5 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import { APP_VERSION, DATA_VERSION, USD_TO_EUR } from '@/data/plans';
+import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   globalStats: { v: number; a: number; u: number };
@@ -32,6 +33,7 @@ export function Header({ globalStats }: HeaderProps) {
           <span className="border border-accent text-accent px-1.5 py-0.5 font-mono text-3xs font-bold tracking-widest">
             {APP_VERSION}
           </span>
+          <ThemeToggle />
         </div>
 
         <div className="text-left sm:text-right text-fg-muted text-2xs space-y-0.5">

@@ -2,6 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Theme tokens ─────────────────────────────────────────────
+   Dark is the default (brutalist Turbo2). `.theme-light` on <html>
+   swaps the palette + body typeface. Brand fonts (mega/display) and
+   platform/status hues stay constant across themes. */
+:root {
+  --bg-primary: #050505;
+  --bg-secondary: #0d0d0d;
+  --bg-elevated: #141414;
+  --bg-panel: #0a0a0a;
+  --border: #1f1f1f;
+  --border-subtle: #141414;
+  --border-strong: #2a2a2a;
+  --fg-primary: #e8e8e8;
+  --fg-muted: #888888;
+  --fg-dim: #444444;
+  --fg-dark: #666666;
+  --accent: #ffd400;
+  --accent-muted: #ffd40033;
+  --font-base: "JetBrains Mono", monospace;
+}
+
+.theme-light {
+  --bg-primary: #faf9f5;
+  --bg-secondary: #efeee8;
+  --bg-elevated: #ffffff;
+  --bg-panel: #f4f3ee;
+  --border: #d9d7cd;
+  --border-subtle: #e7e5dc;
+  --border-strong: #bdbab0;
+  --fg-primary: #1a1a18;
+  --fg-muted: #5c5a52;
+  --fg-dim: #a3a094;
+  --fg-dark: #78766c;
+  --accent: #9a6b00;
+  --accent-muted: #9a6b001f;
+  --font-base: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
 @layer base {
   html, body {
     @apply bg-bg-primary text-fg-primary;
@@ -26,13 +64,13 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d0d0d;
+  background: var(--bg-secondary);
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: var(--border-strong);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffd400;
+  background: var(--accent);
 }
 
 /* Tooltip animation overrides for Radix */
