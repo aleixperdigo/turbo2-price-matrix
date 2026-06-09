@@ -28,19 +28,19 @@
    glass cards with animated holographic borders, violet accent and
    Inter typography. (Ported from the Liquid Glass reference.) */
 .theme-crystal {
-  --bg-primary: #f5f0ec;
-  --bg-secondary: rgba(255, 255, 255, 0.55);
-  --bg-elevated: rgba(255, 255, 255, 0.72);
-  --bg-panel: rgba(255, 255, 255, 0.5);
-  --border: rgba(255, 255, 255, 0.7);
-  --border-subtle: rgba(255, 255, 255, 0.5);
-  --border-strong: rgba(120, 100, 180, 0.28);
-  --fg-primary: #1e293b;
-  --fg-muted: rgba(30, 41, 59, 0.6);
-  --fg-dim: rgba(30, 41, 59, 0.4);
-  --fg-dark: rgba(30, 41, 59, 0.52);
-  --accent: #6d28d9;
-  --accent-muted: rgba(109, 40, 217, 0.12);
+  --bg-primary: #e7e1fb;
+  --bg-secondary: rgba(255, 255, 255, 0.42);
+  --bg-elevated: rgba(255, 255, 255, 0.55);
+  --bg-panel: rgba(255, 255, 255, 0.34);
+  --border: rgba(255, 255, 255, 0.6);
+  --border-subtle: rgba(255, 255, 255, 0.4);
+  --border-strong: rgba(124, 58, 237, 0.32);
+  --fg-primary: #2a2150;
+  --fg-muted: rgba(42, 33, 80, 0.62);
+  --fg-dim: rgba(42, 33, 80, 0.42);
+  --fg-dark: rgba(42, 33, 80, 0.54);
+  --accent: #7c3aed;
+  --accent-muted: rgba(124, 58, 237, 0.14);
   --font-base: "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -49,14 +49,14 @@
   50% { background-position: 100% 50%; }
 }
 
-/* Pastel blob background painted on the body */
+/* Lilac pastel blob background painted on the body */
 .theme-crystal body {
   background:
-    radial-gradient(ellipse 70% 50% at 15% 10%, rgba(196, 181, 253, 0.45), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 85% 0%, rgba(167, 243, 208, 0.4), transparent 60%),
-    radial-gradient(ellipse 70% 60% at 80% 90%, rgba(251, 207, 232, 0.45), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 20% 100%, rgba(186, 230, 253, 0.4), transparent 60%),
-    #f5f0ec;
+    radial-gradient(ellipse 72% 55% at 12% 8%, rgba(167, 139, 250, 0.62), transparent 62%),
+    radial-gradient(ellipse 62% 52% at 88% 4%, rgba(125, 211, 252, 0.42), transparent 62%),
+    radial-gradient(ellipse 72% 60% at 84% 92%, rgba(240, 171, 252, 0.52), transparent 62%),
+    radial-gradient(ellipse 58% 46% at 16% 100%, rgba(196, 181, 253, 0.55), transparent 62%),
+    linear-gradient(160deg, #e9e3fc 0%, #e4ddfb 45%, #efe6fb 100%);
   background-attachment: fixed;
 }
 
@@ -66,39 +66,40 @@
   display: block;
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(196, 181, 253, 0.28), transparent 40%),
-    radial-gradient(circle at calc(100% - var(--mx, 50%)) calc(100% - var(--my, 30%)), rgba(251, 207, 232, 0.28), transparent 40%);
-  transition: background 0.6s ease;
+    radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(167, 139, 250, 0.4), transparent 42%),
+    radial-gradient(circle at calc(100% - var(--mx, 50%)) calc(100% - var(--my, 30%)), rgba(240, 171, 252, 0.34), transparent 42%);
+  transition: background 0.5s ease;
 }
 .theme-crystal #root { position: relative; z-index: 1; }
 /* Let the body blobs show through the app shell */
 .theme-crystal .tm-app { background: transparent; }
 
-/* Frosted glass cards */
+/* Frosted glass cards — translucent so the lilac shows through */
 .theme-crystal .tm-card {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.32));
-  backdrop-filter: blur(32px) saturate(180%);
-  -webkit-backdrop-filter: blur(32px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.7);
+  background:
+    linear-gradient(165deg, rgba(255,255,255,0.42), rgba(228,221,251,0.16));
+  backdrop-filter: blur(26px) saturate(200%);
+  -webkit-backdrop-filter: blur(26px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.55);
   border-radius: 22px;
   box-shadow:
-    0 1px 0 rgba(255,255,255,0.9) inset,
-    0 -1px 0 rgba(255,255,255,0.4) inset,
-    0 30px 60px -20px rgba(120, 100, 180, 0.25),
-    0 8px 20px -8px rgba(120, 100, 180, 0.15);
+    0 1px 0 rgba(255,255,255,0.85) inset,
+    0 -1px 0 rgba(190,170,250,0.25) inset,
+    0 26px 55px -22px rgba(124, 58, 237, 0.38),
+    0 6px 18px -8px rgba(124, 58, 237, 0.22);
 }
-/* Animated holographic border */
+/* Animated holographic border — more vivid */
 .theme-crystal .tm-card::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit;
   padding: 1.5px; pointer-events: none; z-index: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(196,181,253,.6) 35%, rgba(255,255,255,.4) 60%, rgba(251,207,232,.6));
-  background-size: 200% 200%;
+  background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(167,139,250,.9) 28%, rgba(125,211,252,.65) 52%, rgba(240,171,252,.9) 78%, rgba(255,255,255,.6));
+  background-size: 220% 220%;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
-  opacity: .8;
-  animation: holo-shift 6s ease-in-out infinite;
+  opacity: .92;
+  animation: holo-shift 5s ease-in-out infinite;
 }
 .theme-crystal .tm-card > * { position: relative; z-index: 1; }
 
@@ -108,8 +109,20 @@
 .theme-crystal [role="radio"] {
   border-radius: 11px;
 }
+/* Flashy gradient pills for active chips / toggles */
+.theme-crystal main [data-state="on"],
+.theme-crystal aside [data-state="on"],
+.theme-crystal main button[aria-pressed="true"] {
+  background-image: linear-gradient(135deg, #7c3aed, #a855f7 52%, #6366f1) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 8px 20px -6px rgba(124, 58, 237, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
 .theme-crystal .tm-wordmark span {
-  background: linear-gradient(135deg, #1e293b, #6d28d9 50%, #0891b2);
+  background: linear-gradient(135deg, #2a2150, #7c3aed 48%, #0ea5e9);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   letter-spacing: -0.03em;
 }
