@@ -170,6 +170,32 @@ export default function App() {
 
   const audioApplies = activeModelIds.some((k) => MODELS[k]?.audioApplies);
 
+  // Resoluciones soportadas por al menos un modelo activo (celda no-null en esa res)
+  const resSupport = useMemo(() => {
+    const sup: Record<Resolution, boolean> = { '720p': false, '1080p': false };
+    if (activeModelIds.length === 0) return { '720p': true, '1080p': true };
+    activeModelIds.forEach((k) => {
+      const m = MODELS[k];
+      if (!m) return;
+      (['720p', '1080p'] as Resolution[]).forEach((r) => {
+        Object.values(m.pricing).forEach((byRes) => {
+          const byMode = byRes[r];
+          if (byMode && (byMode.t2v || byMode.i2v || byMode.v2v)) sup[r] = true;
+        });
+      });
+    });
+    return sup;
+  }, [activeModelIds]);
+
+  // Duración máxima soportada entre los modelos activos
+  const maxDurSupported = useMemo(() => {
+    if (activeModelIds.length === 0) return Infinity;
+    return activeModelIds.reduce(
+      (mx, k) => Math.max(mx, MODELS[k]?.maxDur ?? 0),
+      0
+    );
+  }, [activeModelIds]);
+
   const globalStats = useMemo(() => {
     let v = 0,
       a = 0,
@@ -219,6 +245,8 @@ export default function App() {
               setRes={setRes}
               dur={dur}
               setDur={setDur}
+              resSupport={resSupport}
+              maxDurSupported={maxDurSupported}
             />
             <Ranking
               ranking={ranking}

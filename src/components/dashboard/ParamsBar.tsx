@@ -13,6 +13,8 @@ interface ParamsBarProps {
   setRes: (r: Resolution) => void;
   dur: number;
   setDur: (d: number) => void;
+  resSupport: Record<Resolution, boolean>;
+  maxDurSupported: number;
 }
 
 export function ParamsBar({
@@ -25,6 +27,8 @@ export function ParamsBar({
   setRes,
   dur,
   setDur,
+  resSupport,
+  maxDurSupported,
 }: ParamsBarProps) {
   return (
     <Card className="mb-3 grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -55,8 +59,20 @@ export function ParamsBar({
       <div>
         <Label>Resolución</Label>
         <ToggleGroup type="single" value={res} onValueChange={(v) => v && setRes(v as Resolution)}>
-          <ToggleGroupItem value="720p">720p</ToggleGroupItem>
-          <ToggleGroupItem value="1080p">1080p</ToggleGroupItem>
+          <ToggleGroupItem
+            value="720p"
+            disabled={!resSupport['720p']}
+            className="disabled:line-through"
+          >
+            720p
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="1080p"
+            disabled={!resSupport['1080p']}
+            className="disabled:line-through"
+          >
+            1080p
+          </ToggleGroupItem>
         </ToggleGroup>
       </div>
       <div>
@@ -66,9 +82,23 @@ export function ParamsBar({
           value={String(dur)}
           onValueChange={(v) => v && setDur(Number(v))}
         >
-          <ToggleGroupItem value="5">5s</ToggleGroupItem>
-          <ToggleGroupItem value="10">10s</ToggleGroupItem>
-          <ToggleGroupItem value="15">15s</ToggleGroupItem>
+          <ToggleGroupItem value="5" disabled={5 > maxDurSupported} className="disabled:line-through">
+            5s
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="10"
+            disabled={10 > maxDurSupported}
+            className="disabled:line-through"
+          >
+            10s
+          </ToggleGroupItem>
+          <ToggleGroupItem
+            value="15"
+            disabled={15 > maxDurSupported}
+            className="disabled:line-through"
+          >
+            15s
+          </ToggleGroupItem>
         </ToggleGroup>
       </div>
     </Card>
