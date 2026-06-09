@@ -23,21 +23,95 @@
   --font-base: "JetBrains Mono", monospace;
 }
 
-.theme-light {
-  --bg-primary: #faf9f5;
-  --bg-secondary: #efeee8;
-  --bg-elevated: #ffffff;
-  --bg-panel: #f4f3ee;
-  --border: #d9d7cd;
-  --border-subtle: #e7e5dc;
-  --border-strong: #bdbab0;
-  --fg-primary: #1a1a18;
-  --fg-muted: #5c5a52;
-  --fg-dim: #a3a094;
-  --fg-dark: #78766c;
-  --accent: #9a6b00;
-  --accent-muted: #9a6b001f;
+/* ─── CRYSTAL · Liquid Glass ───────────────────────────────────
+   Totally different skin: creamy pastel mesh, frosted translucent
+   glass cards with animated holographic borders, violet accent and
+   Inter typography. (Ported from the Liquid Glass reference.) */
+.theme-crystal {
+  --bg-primary: #f5f0ec;
+  --bg-secondary: rgba(255, 255, 255, 0.55);
+  --bg-elevated: rgba(255, 255, 255, 0.72);
+  --bg-panel: rgba(255, 255, 255, 0.5);
+  --border: rgba(255, 255, 255, 0.7);
+  --border-subtle: rgba(255, 255, 255, 0.5);
+  --border-strong: rgba(120, 100, 180, 0.28);
+  --fg-primary: #1e293b;
+  --fg-muted: rgba(30, 41, 59, 0.6);
+  --fg-dim: rgba(30, 41, 59, 0.4);
+  --fg-dark: rgba(30, 41, 59, 0.52);
+  --accent: #6d28d9;
+  --accent-muted: rgba(109, 40, 217, 0.12);
   --font-base: "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+@keyframes holo-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Pastel blob background painted on the body */
+.theme-crystal body {
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 10%, rgba(196, 181, 253, 0.45), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 0%, rgba(167, 243, 208, 0.4), transparent 60%),
+    radial-gradient(ellipse 70% 60% at 80% 90%, rgba(251, 207, 232, 0.45), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 100%, rgba(186, 230, 253, 0.4), transparent 60%),
+    #f5f0ec;
+  background-attachment: fixed;
+}
+
+/* Mesh gradient that follows the cursor (vars set from App) */
+.crystal-mesh { display: none; }
+.theme-crystal .crystal-mesh {
+  display: block;
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mx, 50%) var(--my, 30%), rgba(196, 181, 253, 0.28), transparent 40%),
+    radial-gradient(circle at calc(100% - var(--mx, 50%)) calc(100% - var(--my, 30%)), rgba(251, 207, 232, 0.28), transparent 40%);
+  transition: background 0.6s ease;
+}
+.theme-crystal #root { position: relative; z-index: 1; }
+/* Let the body blobs show through the app shell */
+.theme-crystal .tm-app { background: transparent; }
+
+/* Frosted glass cards */
+.theme-crystal .tm-card {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.32));
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 22px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.9) inset,
+    0 -1px 0 rgba(255,255,255,0.4) inset,
+    0 30px 60px -20px rgba(120, 100, 180, 0.25),
+    0 8px 20px -8px rgba(120, 100, 180, 0.15);
+}
+/* Animated holographic border */
+.theme-crystal .tm-card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  padding: 1.5px; pointer-events: none; z-index: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.9), rgba(196,181,253,.6) 35%, rgba(255,255,255,.4) 60%, rgba(251,207,232,.6));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: .8;
+  animation: holo-shift 6s ease-in-out infinite;
+}
+.theme-crystal .tm-card > * { position: relative; z-index: 1; }
+
+/* Soft rounded controls + glassy chips/toggles inside the app */
+.theme-crystal main button,
+.theme-crystal aside button,
+.theme-crystal [role="radio"] {
+  border-radius: 11px;
+}
+.theme-crystal .tm-wordmark span {
+  background: linear-gradient(135deg, #1e293b, #6d28d9 50%, #0891b2);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  letter-spacing: -0.03em;
 }
 
 @layer base {

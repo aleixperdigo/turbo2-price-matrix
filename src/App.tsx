@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { Header } from '@/components/dashboard/Header';
 import { Footer } from '@/components/dashboard/Footer';
@@ -41,6 +41,17 @@ export default function App() {
   const [dur, setDur] = useState(5);
   const [statusFilter, setStatusFilter] = useState<StatusFilterT>('all');
   const [sortMode, setSortMode] = useState<SortMode>('price');
+
+  // Cursor-following mesh gradient (only visible in the Crystal theme)
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      const root = document.documentElement;
+      root.style.setProperty('--mx', `${(e.clientX / window.innerWidth) * 100}%`);
+      root.style.setProperty('--my', `${(e.clientY / window.innerHeight) * 100}%`);
+    };
+    window.addEventListener('pointermove', onMove);
+    return () => window.removeEventListener('pointermove', onMove);
+  }, []);
 
   const toggleModel = (k: string) => {
     const isActivating = !activeModelIds.includes(k);
@@ -217,7 +228,8 @@ export default function App() {
 
   return (
     <TooltipProvider delayDuration={200}>
-      <div className="bg-bg-primary text-fg-primary min-h-screen font-mono text-[12.5px] leading-relaxed p-3 md:p-5 max-w-[1480px] mx-auto">
+      <div className="crystal-mesh" aria-hidden="true" />
+      <div className="tm-app bg-bg-primary text-fg-primary min-h-screen font-mono text-[12.5px] leading-relaxed p-3 md:p-5 max-w-[1480px] mx-auto">
         <Header globalStats={globalStats} />
 
         <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-4">

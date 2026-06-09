@@ -53,7 +53,7 @@ export function Header({ globalStats }: HeaderProps) {
       </div>
 
       {/* Mega title — fullwidth */}
-      <h1 className="font-mega text-fg-primary leading-[0.85] -tracking-[0.04em] uppercase">
+      <h1 className="tm-wordmark font-mega text-fg-primary leading-[0.85] -tracking-[0.04em] uppercase">
         <span className="block text-[clamp(1.75rem,5vw,4rem)]">VIDEO MODELS</span>
         <span className="block text-accent text-[clamp(1.75rem,5vw,4rem)]">
           PRICE MATRIX
